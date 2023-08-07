@@ -2,6 +2,7 @@ from .base_page import BasePage
 from .locators import ProductPageLocators
 
 class ProductPage(BasePage):
+
 	def add_product_to_cart(self):
 		button_add_to_basket = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
 		button_add_to_basket.click()
@@ -19,3 +20,6 @@ class ProductPage(BasePage):
 		print(price_after_adding.text)
 		assert price_of_product.text == price_after_adding.text, "PRICES DONT MATCH"
 
+	def should_not_be_success_message(self):
+		assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE),\
+			"Success message is presented, but should not be"

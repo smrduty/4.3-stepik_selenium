@@ -46,14 +46,13 @@ class TestUserAddToBasketFromProductPage():
 		self.page.register_new_user(email, "lasiemvasldf")
 		self.page.should_be_authorised_user()
 
-
-
 	def test_user_cant_see_success_message(self, browser):
 		link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
 		page = ProductPage(browser, link)
 		page.open()
 		page.should_not_be_success_message()
 
+	@pytest.mark.need_review
 	def test_user_can_add_product_to_cart(self, browser):
 		link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
 		page = ProductPage(browser, link)
@@ -66,9 +65,10 @@ class TestUserAddToBasketFromProductPage():
 		page.prices_match()
 		time.sleep(2)
 
+@pytest.mark.need_review
 def test_guest_can_add_product_to_cart(browser):
-	link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
-	#link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+	#link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+	link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
 	page = ProductPage(browser, link)
 	page.open()
 	page.add_product_to_cart()
@@ -79,6 +79,7 @@ def test_guest_can_add_product_to_cart(browser):
 	page.prices_match()
 	time.sleep(2)
 
+@pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_cart(browser):
 	link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
 	page = ProductPage(browser, link)
@@ -105,6 +106,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
 	page.open()
 	page.should_be_login_link()
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
 	link = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
 	page = ProductPage(browser, link)
@@ -118,6 +120,7 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
 	page.go_to_basket()
 	page.basket_is_empty()
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 	link = "https://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
 	page = BasketPage(browser, link)

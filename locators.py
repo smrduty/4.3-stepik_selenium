@@ -8,6 +8,8 @@ class BasePageLocators():
 
 	BASKET_LINK = (By.XPATH, "//span/a")
 
+	USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+
 class ProductPageLocators():
 
 	SUCCESS_MESSAGE = (By.CLASS_NAME, "alertinner ")
@@ -25,3 +27,13 @@ class ProductPageLocators():
 class BasketPageLocators():
 
 	BASKET_IS_NOT_EMPTY = (By.CLASS_NAME, "basket-items")
+
+class LoginPageLocators():
+
+	EMAIL = (By.ID, "id_registration-email")
+
+	PASSWORD = (By.ID, "id_registration-password1") 
+
+	PASSWORD_CONFIRM = (By.ID, "id_registration-password2")
+
+	REGISTRATION_BUTTON = (By.CSS_SELECTOR, '[name="registration_submit"]')
